@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hot Resturant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Kurt's</h1>
+            <p class="lead">Make your reservation.</p>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Reservation</h3>
+    </div>
+    <form method="POST">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">First and last name</span>
+            </div>
+            <input type="text" aria-label="First name" class="form-control" id="fName">
+            <input type="text" aria-label="Last name" class="form-control" id="lName">
+            <input type="text" aria-label="Phone" class="form-control" id="phone">
+            <input type="text" aria-label="Email" class="form-control" id="email">
+        </div>
+    </form>
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-fire"></span> Reserve</button>
+    </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</script>
+
+<script>
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newReservation = {
+        fname: $("#fName").val().trim(),
+        lname: $("#lName").val().trim(),
+        phone: $("#phone").val().trim(),
+        email: $("#email").val().trim()
+  
+      };
+      console.log(newReservation);
+
+      // // Question: What does this code do??
+       $.post("/data/tables", newReservation)
+       
+       .then((data)=>{
+        console.log("reserve", data);
+           alert("Adding reservation...");
+           $("#fName").val('')
+           $("#lName").val('')
+           $("#phone").val('')
+           $("#email").val('')
+       })
+    });
+   
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+</body>
+</html>
